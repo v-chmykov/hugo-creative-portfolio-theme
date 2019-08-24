@@ -1,16 +1,16 @@
 <p class="social social--big">
   {{ with .Site.Params.social.instagram }}
-  <a href="{{ . }}" title="" class="instagram">
+  <a href="{{ . }}" title="My profile in Instagram" class="instagram">
     <i class="fa fa-instagram"></i>
   </a>
   {{end}}
   {{ with .Site.Params.social.pinterest }}
-  <a href="{{ . }}" title="" class="pinterest">
+  <a href="{{ . }}" title="My profile in Pinterest" class="pinterest">
     <i class="fa fa-pinterest"></i>
   </a>
   {{end}}
   {{ with .Site.Params.social.email }}
-  <a href="mailto:{{ . }}" class="email">
+  <a href="mailto:{{ . }}" title="Direct email to me" class="email">
     <i class="fa fa-envelope"></i>
   </a>
   {{end}}
