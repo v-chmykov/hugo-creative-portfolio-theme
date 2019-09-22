@@ -2,7 +2,7 @@
     {{ partial "mobile_nav_toggle.html" . }}
     <div class="grid">
         <div class="row">
-          {{ range where .Site.RegularPages.ByDate "Section" "blog" }}
+          {{ range where .Site.RegularPages.ByDate.Reverse "Section" "blog" }}
               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 masonry-item">
                   <div class="box-masonry">
                       {{ if and (isset .Params "image") .Params.image }}
