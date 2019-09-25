@@ -417,6 +417,9 @@ SIDEBAR + RIGHT COLUMN
 .content-column-content ul {
   list-style: none;
 }
+.content-column-content img {
+  cursor: pointer;
+}
 .content-column-content img[src*="align=left"] {
   margin-left: 0;
   margin-right: 0;
