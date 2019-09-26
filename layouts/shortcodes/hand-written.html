@@ -1,0 +1,4 @@
+{{ $default := "2.5" }}
+<p class="hand-written" style="font-size:{{ index .Params 1 | default $default }}em">
+    {{ index .Params 0 }}
+</p>
