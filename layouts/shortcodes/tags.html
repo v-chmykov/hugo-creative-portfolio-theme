@@ -1,0 +1,10 @@
+<p class="tags">
+{{ range $.Page.Params.tags  }}
+  {{ $name := . }}
+  {{ with $.Site.GetPage (printf "/%s/%s" "tags" ($name | urlize)) }}
+  <span class="tag">
+    <a href="{{ .Permalink }}">#{{ $name }}</a>
+  </span>
+  {{ end }}
+{{ end }}
+</p>

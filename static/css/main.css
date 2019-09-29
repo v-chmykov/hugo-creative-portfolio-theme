@@ -420,6 +420,7 @@ SIDEBAR + RIGHT COLUMN
 .content-column-content img {
   cursor: pointer;
 }
+.content-column-content h1,
 .content-column-content h2,
 .content-column-content h3,
 .content-column-content h4,
@@ -875,14 +876,14 @@ a:active {
   margin: 15px auto;
   width: 50%;
 }
-.box-masonry .box-masonry-text {
+.box-masonry-text {
   padding: 15px 20px 15px;
 }
-.box-masonry .box-masonry-text p {
+.box-masonry-text p {
   color: #777777;
   font-size: 14px;
 }
-.box-masonry .box-masonry-hover-text-header {
+.box-masonry-hover-text-header {
   position: absolute;
   left: 0;
   right: 0;
@@ -894,13 +895,13 @@ a:active {
   transition: all 0.2s ease-out;
   color: #555555;
 }
-.box-masonry .box-masonry-hover-text-header p {
+.box-masonry-hover-text-header p {
   font-size: 14px;
 }
-.box-masonry .box-masonry-hover-text-header h4 a {
+.box-masonry-hover-text-header h4 a {
   color: #555555;
 }
-.box-masonry .box-masonry-hover-center {
+.box-masonry-hover-center {
   position: absolute;
   width: 100%;
   top: 30%;
@@ -911,7 +912,7 @@ a:active {
   transition: all 0.2s ease-out;
   text-align: center;
 }
-.box-masonry .box-masonry-image:hover {
+.box-masonry-image:hover {
   text-decoration: none;
 }
 .box-simple {

@@ -4,9 +4,21 @@
   <div class="row">
     <div class="col-lg-8">
       <div class="content-column-content">
-         <h1>{{ .Title }}</h1>
-         {{ .Content }}
-         {{ template "_internal/disqus.html" . }}
+        
+        <h1>{{ .Title }}</h1>
+
+        {{ with .Param "category" }}
+          {{ $name := . }}
+          {{ with $.Site.GetPage (printf "/%s/%s" "category" ($name | urlize)) }}
+            <p class="category">
+              Category: <a href="{{ .Permalink }}">{{ $name }}</a>
+            </p>
+          {{ end }}
+        {{ end }}
+
+        {{ .Content }}
+
+        {{ template "_internal/disqus.html" . }}
       </div>
     </div>
   </div>

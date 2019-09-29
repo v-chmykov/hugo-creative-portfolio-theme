@@ -3,7 +3,7 @@
   {{ partial "mobile_nav_toggle.html" . }}
   <div class="grid">
     <div class="row">
-      {{ range where .Site.RegularPages.ByDate.Reverse "Section" "blog" }}
+      {{ range .Pages.ByDate.Reverse }}
         {{ partial "post_in_list.html" . }}
       {{ end }}
     </div>
