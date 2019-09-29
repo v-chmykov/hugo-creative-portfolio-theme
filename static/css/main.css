@@ -410,6 +410,7 @@ SIDEBAR + RIGHT COLUMN
 .content-column-content p,
 .content-column-content li {
   color: #777777;
+  margin-bottom: 1em;
 }
 .content-column-content ul {
   list-style: none;
