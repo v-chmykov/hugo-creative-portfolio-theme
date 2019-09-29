@@ -23,8 +23,8 @@
         </div>
         <hr>
         <div class="box-masonry-category text-justify">
-          <p class="post-list-category">
-              Category: <a href="{{ .Permalink }}">{{ .Params.category }}</a>
+          <p class="post-list-category text-center">
+              <a href="/category/{{ .Params.category | urlize }}">{{ .Params.category }}</a>
           </p>
         </div>
       </div>
