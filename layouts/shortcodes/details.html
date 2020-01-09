@@ -1,0 +1,8 @@
+<details>
+  <summary>
+    <i class="fa fa-chevron-right details-opened" aria-hidden="true"></i>
+    <i class="fa fa-chevron-down details-closed" aria-hidden="true"></i>
+    {{ .Get "summary" }}
+  </summary>
+  {{ .Inner | markdownify }}
+</details>

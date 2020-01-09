@@ -24,3 +24,27 @@
 .tag {
   font-style: italic;
 }
+
+.content-column-content details {
+  margin-bottom: 0.4em;
+}
+
+.content-column-content summary {
+  font-style: italic;
+}
+
+.content-column-content summary::-webkit-details-marker {
+  color: transparent;
+}
+
+.details-closed {
+  display: none;
+}
+
+.content-column-content details[open] .details-opened {
+  display: none;
+}
+
+.content-column-content details[open] .details-closed {
+  display: inline;
+}
