@@ -30,8 +30,11 @@
 }
 
 .content-column-content summary {
-  font-style: italic;
   color: #ef5285;
+  font-family: 'Unica One', cursive;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .content-column-content summary::-webkit-details-marker {
@@ -56,9 +59,28 @@
 }
 
 .owl-theme .owl-controls .owl-page span {
+  background-color: #ef5285;
+}
+
+.owl-theme .owl-controls .owl-page span,
+.owl-theme .owl-controls .owl-buttons .owl-next,
+.owl-theme .owl-controls .owl-buttons .owl-prev {
   opacity: 0.5;
 }
 
-.owl-theme .owl-controls.clickable .owl-page:hover span {
+.owl-theme .owl-controls .owl-buttons .owl-next,
+.owl-theme .owl-controls .owl-buttons .owl-prev {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid #ef5285;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ef5285;
+}
+
+.owl-theme .owl-controls.clickable .owl-page:hover span,
+.owl-theme .owl-controls .owl-buttons .owl-next:hover,
+.owl-theme .owl-controls .owl-buttons .owl-prev:hover {
   opacity: 1;
 }
