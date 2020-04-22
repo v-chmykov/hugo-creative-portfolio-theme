@@ -13,7 +13,7 @@
             <p class="category">
               Category: <a href="{{ .Permalink }}">{{ $name }}</a>
               <span class="pull-right">
-                  {{ .Date.Format "02 January 06" }}
+                  {{ $.Params.date.Format "02 January 06" }}
               </span>
             </p>
           {{ end }}
