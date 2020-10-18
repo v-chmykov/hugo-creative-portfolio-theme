@@ -16,6 +16,18 @@
 <link rel="stylesheet" href="{{ "/css/owl.theme.css" }}">
 <link rel="stylesheet" href="{{ "/css/custom.css" }}">
 <link rel="stylesheet" href="{{ "/css/cookieconsent.min.css" }}">
+{{ `<!-- Open Graph -->` | safeHTML }}
+<meta property="og:type" content="{{ if not $.IsNode }}article{{ else }}blog{{ end }}"/>
+<meta property="og:title" content="{{ .Title }}{{ if not $.IsNode }} | {{ .Site.Params.title }} {{ end }}"/>
+<meta property="og:url" content="{{ .Permalink }}"/>
+{{ if .Description }}<meta property="og:description" content="{{ .Description }}"/>{{ end }}
+{{ if and (isset .Params "image") .Params.image }}<meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.image }}"/>{{ end }}
+{{ `<!-- Twitter -->` | safeHTML }}
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="{{ .Title }}{{ if not $.IsNode }} | {{ .Site.Params.title }} {{ end }}"/>
+<meta property="twitter:url" content="{{ .Permalink }}"/>
+{{ if .Description }}<meta property="twitter:desciprtion" content="{{ .Description }}"/>{{ end }}
+{{ if and (isset .Params "image") .Params.image }}<meta property="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.image }}"/>{{ end }}
  <!-- Responsivity for older IE -->
 {{ `
   <!--[if lt IE 9]>
