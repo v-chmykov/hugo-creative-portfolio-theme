@@ -2,28 +2,25 @@
 <div class="col-xs-12 col-sm-8 col-md-9 content-column white-background">
   {{ partial "mobile_nav_toggle.html" . }}
   <div class="row">
-    <div class="col-lg-8">
-      <div class="content-column-content">
-        
-        <h1>{{ .Title }}</h1>
+    <article class="col-lg-8 content-column-content">
+      <h1>{{ .Title }}</h1>
 
-        {{ with .Param "category" }}
-          {{ $name := . }}
-          {{ with $.Site.GetPage (printf "/%s/%s" "category" ($name | urlize)) }}
-            <p class="category">
-              Category: <a href="{{ .Permalink }}">{{ $name }}</a>
-              <span class="pull-right">
-                  {{ $.Params.date.Format "02 January 06" }}
-              </span>
-            </p>
-          {{ end }}
+      {{ with .Param "category" }}
+        {{ $name := . }}
+        {{ with $.Site.GetPage (printf "/%s/%s" "category" ($name | urlize)) }}
+          <p class="category">
+            Category: <a href="{{ .Permalink }}">{{ $name }}</a>
+            <span class="pull-right">
+                {{ $.Params.date.Format "02 January 06" }}
+            </span>
+          </p>
         {{ end }}
+      {{ end }}
 
-        {{ .Content }}
+      {{ .Content }}
 
-        {{ template "_internal/disqus.html" . }}
-      </div>
-    </div>
+      {{ template "_internal/disqus.html" . }}
+    </article>
   </div>
 </div>
 

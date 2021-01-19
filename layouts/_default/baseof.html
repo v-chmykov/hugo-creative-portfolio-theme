@@ -2,15 +2,13 @@
 <html lang="{{ .Site.LanguageCode }}">
 <head>{{ partial "head.html" . }}</head>
 <body>
-  <div id="all">
-      <div class="container-fluid">
-          <div class="row row-offcanvas row-offcanvas-left">
-              {{ partial "elevator.html" . }}
-              {{ partial "sidebar.html" . }}
-              {{ block "main" . }}
-              {{ end }}
-          </div>
-      </div>
+  <div id="all" class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-left">
+      {{ partial "elevator.html" . }}
+      {{ partial "sidebar.html" . }}
+      {{ block "main" . }}
+      {{ end }}
+    </div>
   </div>
   {{ partial "scripts.html" . }}
   {{ partial "consent.html" . }}
