@@ -18,16 +18,16 @@
 
 {{ `<!-- Open Graph -->` | safeHTML }}
 <meta property="og:type" content="{{ if not $.IsNode }}article{{ else }}blog{{ end }}"/>
-<meta property="og:title" content="{{ .Title }}{{ if not $.IsNode }} | {{ .Site.Params.title }} {{ end }}"/>
+<meta property="og:title" content="{{ if $.IsNode }}{{ .Site.Params.title }}{{ else }}{{ .Params.social.title }}{{ end }}"/>
 <meta property="og:url" content="{{ .Permalink }}"/>
-{{ if .Description }}<meta property="og:description" content="{{ .Description }}"/>{{ end }}
+{{ if .Params.social.description }}<meta property="og:description" content="{{ .Params.social.description }}"/>{{ end }}
 {{ if and (isset .Params "image") .Params.image }}<meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.image }}"/>{{ end }}
 
 {{ `<!-- Twitter -->` | safeHTML }}
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="{{ .Title }}{{ if not $.IsNode }} | {{ .Site.Params.title }} {{ end }}"/>
+<meta property="twitter:title" content="{{ if $.IsNode }}{{ .Site.Params.title }}{{ else }}{{ .Params.social.title }}{{ end }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}"/>
-{{ if .Description }}<meta property="twitter:desciprtion" content="{{ .Description }}"/>{{ end }}
+{{ if .Params.social.description }}<meta property="twitter:desciprtion" content="{{ .Params.social.description }}"/>{{ end }}
 {{ if and (isset .Params "image") .Params.image }}<meta property="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.image }}"/>{{ end }}
 
  <!-- Responsivity for older IE -->
@@ -42,6 +42,6 @@
 <link href="{{ "/css/custom.css" }}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ "/img/favicon.jpg" }}">
 
-{{ if not (in (.Site.BaseURL | string) "localhost") }}
+{{ if not .Site.IsServer }}
   {{ template "_internal/google_analytics_async.html" . }}
 {{ end }}
