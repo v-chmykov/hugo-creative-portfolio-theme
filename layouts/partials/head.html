@@ -21,14 +21,14 @@
 <meta property="og:title" content="{{ if $.IsNode }}{{ .Site.Params.title }}{{ else }}{{ .Params.social.title }}{{ end }}"/>
 <meta property="og:url" content="{{ .Permalink }}"/>
 {{ if .Params.social.description }}<meta property="og:description" content="{{ .Params.social.description }}"/>{{ end }}
-{{ if and (isset .Params "image") .Params.image }}<meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.image }}"/>{{ end }}
+<meta property="og:image" content="{{ .Site.BaseURL }}{{ if and (isset .Params "image") .Params.image }}{{ .Params.image }}{{ else }}img/social-main-logo.jpg{{ end }}"/>
 
 {{ `<!-- Twitter -->` | safeHTML }}
 <meta property="twitter:card" content="summary"/>
 <meta property="twitter:title" content="{{ if $.IsNode }}{{ .Site.Params.title }}{{ else }}{{ .Params.social.title }}{{ end }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}"/>
 {{ if .Params.social.description }}<meta property="twitter:desciprtion" content="{{ .Params.social.description }}"/>{{ end }}
-{{ if and (isset .Params "image") .Params.image }}<meta property="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.image }}"/>{{ end }}
+<meta property="twitter:image" content="{{ .Site.BaseURL }}{{ if and (isset .Params "image") .Params.image }}{{ .Params.image }}{{ else }}img/social-main-logo.jpg{{ end }}"/>
 
  <!-- Responsivity for older IE -->
 {{ `
