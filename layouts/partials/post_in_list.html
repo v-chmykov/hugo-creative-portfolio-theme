@@ -14,10 +14,10 @@
         <hr>
         <div class="box-masonry-description text-justify">
           <p>
-            {{ if .Description }}
-              {{ .Description }}
+            {{ if .Params.ShortDescription }}
+              {{ .Params.ShortDescription }}
             {{ else }}
-              {{ .Summary }}
+              {{ .Description }}
             {{ end }}
           </p>
         </div>
