@@ -1,9 +1,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title> 
-    {{ .Title }}{{ if not $.IsNode }} | {{ .Site.Params.title }} {{ end }}
+    {{ if .Params.social.title }}{{ .Params.social.title }} | {{ .Site.Params.shortTitle }}{{ else }}{{ .Site.Params.title }}{{ end }}
 </title>
-{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+<meta name="description" content="{{ if .Params.social.description }}{{ .Params.social.description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Unica+One|Vollkorn:400,400i,700,700i&display=swap">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
@@ -17,17 +17,17 @@
 <link rel="stylesheet" href="{{ "/css/cookieconsent.min.css" }}">
 
 {{ `<!-- Open Graph -->` | safeHTML }}
-<meta property="og:type" content="{{ if not $.IsNode }}article{{ else }}blog{{ end }}"/>
-<meta property="og:title" content="{{ if $.IsNode }}{{ .Site.Params.title }}{{ else }}{{ .Params.social.title }}{{ end }}"/>
+<meta property="og:type" content="{{ if .IsHome }}blog{{ else }}article{{ end }}"/>
+<meta property="og:title" content="{{ if .Params.social.title }}{{ .Params.social.title }} | {{ .Site.Params.shortTitle }}{{ else }}{{ .Site.Params.title }}{{ end }}"/>
 <meta property="og:url" content="{{ .Permalink }}"/>
-{{ if .Params.social.description }}<meta property="og:description" content="{{ .Params.social.description }}"/>{{ end }}
+<meta property="og:description" content="{{ if .Params.social.description }}{{ .Params.social.description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
 <meta property="og:image" content="{{ .Site.BaseURL }}{{ if and (isset .Params "image") .Params.image }}{{ .Params.image }}{{ else }}img/social-main-logo.jpg{{ end }}"/>
 
 {{ `<!-- Twitter -->` | safeHTML }}
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="{{ if $.IsNode }}{{ .Site.Params.title }}{{ else }}{{ .Params.social.title }}{{ end }}"/>
+<meta property="twitter:title" content="{{ if .Params.social.title }}{{ .Params.social.title }} | {{ .Site.Params.shortTitle }}{{ else }}{{ .Site.Params.title }}{{ end }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}"/>
-{{ if .Params.social.description }}<meta property="twitter:desciprtion" content="{{ .Params.social.description }}"/>{{ end }}
+<meta property="twitter:desciprtion" content="{{ if .Params.social.description }}{{ .Params.social.description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
 <meta property="twitter:image" content="{{ .Site.BaseURL }}{{ if and (isset .Params "image") .Params.image }}{{ .Params.image }}{{ else }}img/social-main-logo.jpg{{ end }}"/>
 
  <!-- Responsivity for older IE -->
