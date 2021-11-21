@@ -1,0 +1,32 @@
+{{ with .Site.Params.kofiCode }}
+<style>
+    .btn-container {
+        margin-bottom: 24px;
+    }
+
+    .btn-container .kofi-button {
+        box-shadow: none;
+        border: 1px solid #777!important;
+    }
+
+    .btn-container .kofi-button:hover {
+        border-color: #ef5285!important;
+    }
+
+    .btn-container .kofitext {
+        color: #777!important;
+    }
+
+    .kofi-button:hover .kofitext {
+        color: #ef5285!important;
+    }
+</style>
+
+<script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+<script type='text/javascript'>
+    kofiwidget2.init('{{ $.Site.Params.kofiBtnText }}', 'transparent', '{{ . }}');
+    kofiwidget2.draw();
+</script> 
+{{end}}
+
+

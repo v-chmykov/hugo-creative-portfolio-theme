@@ -6,6 +6,9 @@
       <article class="content-column-content">
          <h1>{{ .Title }}</h1>
          {{ .Content }}
+
+         {{ partial "ko-fi.html" . }}
+
          <h4>You can find me on:</h4>
          {{ partial "social_buttons_in_contact.html" . }}
       </article>
