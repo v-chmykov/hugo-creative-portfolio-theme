@@ -43,7 +43,7 @@
 <link href="{{ "/css/custom.css" }}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ "/img/favicon.jpg" }}">
 
-<!-- {{ if not .Site.IsServer }} -->
+{{ if not .Site.IsServer }}
   {{ if site.Config.Services.GoogleAnalytics.ID }}
     {{ with site.Config.Services.GoogleAnalytics.ID }}
       <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -57,4 +57,4 @@
       </script>
     {{ end }}
   {{ end }}
-<!-- {{ end }} -->
+{{ end }}
