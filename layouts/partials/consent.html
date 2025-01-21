@@ -1,19 +1,29 @@
-<script src="{{ "js/cookieconsent.min.js" | absURL }}"></script>
-<script>
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#ffffff",
-      "text": "#888888"
-    },
-    "button": {
-      "background": "#ffd5da",
-      "text": "#000000"
+<script type="text/javascript">
+    const policyMap = { "en-GB": 53426765, de: 13490983 };
+    const defaultPreferredLanguage = "en-GB";
+    let preferredLanguage =
+        navigator.languages[0] ||
+        navigator.language ||
+        defaultPreferredLanguage;
+    if (preferredLanguage.startsWith("de")) {
+        preferredLanguage = "de";
     }
-  },
-  "position": "bottom-left",
-  "content": {
-    "message": "My site uses cookies to offer you a better experience, analyze site traffic &amp; serve personalized content advertisements."
-  }
-});
+    if (preferredLanguage != "en-GB" && preferredLanguage.startsWith("en")) {
+        preferredLanguage = defaultPreferredLanguage;
+    }
+
+    const config = {
+        siteId: 2228741,
+        cookiePolicyId: policyMap[preferredLanguage],
+        lang: preferredLanguage,
+        storage: {
+            useSiteId: true,
+        },
+    };
+
+    var _iub = _iub || [];
+    _iub.csConfiguration = config;
 </script>
+<script type="text/javascript" src="https://cs.iubenda.com/autoblocking/2228741.js"></script>
+<script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
+<script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
