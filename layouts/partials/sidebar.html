@@ -30,11 +30,9 @@
     {{ partial "ko-fi.html" . }}
 
     <div class="copyright">
-      <p class="credit">
-        {{ with .Site.Params.copyright }}
-          {{ . | safeHTML }}
-        {{ end }}
-      </p>
+      {{ range .Site.Params.copyright }}
+        <p class="credit">{{ . | safeHTML }}</p>
+      {{ end }}
     </div>
   </div>
 </div>
