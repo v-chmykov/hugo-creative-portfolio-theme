@@ -1,15 +1,8 @@
 <script type="text/javascript">
-    const policyMap = { "en-GB": 53426765, de: 13490983 };
-    const defaultPreferredLanguage = "en-GB";
-    let preferredLanguage =
-        navigator.languages[0] ||
-        navigator.language ||
-        defaultPreferredLanguage;
-    if (preferredLanguage.startsWith("de")) {
-        preferredLanguage = "de";
-    }
-    if (preferredLanguage != "en-GB" && preferredLanguage.startsWith("en")) {
-        preferredLanguage = defaultPreferredLanguage;
+    const policyMap = { 'en-GB': 53426765, 'de': 13490983 };
+    let preferredLanguage = 'en-GB';
+    if ((navigator.languages[0] || navigator.language).startsWith("de")) {
+        preferredLanguage = 'de';
     }
 
     const config = {
