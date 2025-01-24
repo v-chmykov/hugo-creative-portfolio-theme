@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
+
 <head>{{ partial "head.html" . }}</head>
+
 <body>
   <div id="all" class="container-fluid">
     <div class="row row-offcanvas row-offcanvas-left">
       {{ partial "elevator.html" . }}
       {{ partial "sidebar.html" . }}
-      {{ block "main" . }}
-      {{ end }}
+      <div class="col-xs-12 col-sm-8 col-md-9 content-column">
+        {{ partial "mobile_nav_toggle.html" . }}
+        {{ block "main" . }}
+        {{ end }}
+      </div>
     </div>
   </div>
   {{ partial "scripts.html" . }}
   {{ partial "consent.html" . }}
 </body>
+
 </html>
