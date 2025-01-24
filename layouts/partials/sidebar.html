@@ -28,11 +28,5 @@
     {{ partial "social_buttons_in_sidebar.html" . }}
 
     {{ partial "ko-fi.html" . }}
-
-    <div class="copyright">
-      {{ range .Site.Params.copyright }}
-        <p class="credit">{{ . | safeHTML }}</p>
-      {{ end }}
-    </div>
   </div>
 </div>

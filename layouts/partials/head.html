@@ -1,8 +1,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title> 
-    {{ if .Params.social.title }}{{ .Params.social.title }} | {{ .Site.Params.shortTitle }}{{ else }}{{ .Site.Params.title }}{{ end }}
+  {{ if .Params.social.title }}{{ .Params.social.title }} | {{ .Site.Params.shortTitle }}{{ else }}{{ .Site.Params.title }}{{ end }}
 </title>
+{{ if .Params.redirect }}<meta http-equiv="Refresh" content="0; url='{{ .Params.target }}'" />{{ end }}
 <meta name="description" content="{{ if .Params.social.description }}{{ .Params.social.description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{ if eq .Params.noindex true }}<meta name="robots" content="noindex" />{{ end }}

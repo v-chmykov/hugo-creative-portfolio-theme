@@ -1,0 +1,15 @@
+<div>
+    <hr>
+    <div class="copyright text-center">
+        <ul class="copyright-links">
+            <li><a rel="nofollow" href="/legal/legal-notice/">Legal notice</a></li>
+            <li><a rel="nofollow" href="https://www.iubenda.com/privacy-policy/53426765/full-legal">Privacy policy</a></li>
+            <li><a rel="nofollow" href="/legal/impressum/">Impressum</a></li>
+            <li><a rel="nofollow" href="https://www.iubenda.com/privacy-policy/13490983/full-legal">Datenschutzerklärung</a></li>
+        </ul>
+
+        {{ range .Site.Params.copyright }}
+        <p>{{ . | safeHTML }}</p>
+        {{ end }}
+    </div>
+</div>
