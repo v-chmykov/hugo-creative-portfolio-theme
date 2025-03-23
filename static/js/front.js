@@ -66,18 +66,18 @@ function lightbox() {
 function utils() {
     /* tooltips */
     $('[data-toggle="tooltip"]').tooltip();
-    
+
     /* click on the box activates the radio */
     $('#checkout').on('click', '.box.shipping-method, .box.payment-method', function (e) {
         var radio = $(this).find(':radio');
         radio.prop('checked', true);
     });
-    
+
     /* click on the box activates the link in it */
     $('.box.clickable').on('click', function (e) {
         window.location = $(this).find('a').attr('href');
     });
-    
+
     /* external links in new window*/
     $('.external').on('click', function (e) {
         e.preventDefault();
@@ -190,15 +190,15 @@ $(document).ready(function () {
 $(document).ready(function () {
     var $elevator = $("#js-scroll-to-top");
     var limit = window.innerHeight / 2;
-    
-    $elevator.on("click", function(e) {
+
+    $elevator.on("click", function (e) {
         e.preventDefault();
         window.scrollTo(0, 0);
     });
 
     $elevator.toggleClass("hidden", window.pageYOffset < limit);
 
-    $(window).on("scroll", function() {
+    $(window).on("scroll", function () {
         $elevator.toggleClass("hidden", window.pageYOffset < limit);
     });
 });
