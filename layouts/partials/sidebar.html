@@ -8,7 +8,7 @@
         <img src="/img/logo.svg" alt="Site logo">
       </a>
     </div>
-    
+
     <hr />
     <p class="hand-written">Hello!</p>
     {{ range .Site.Params.sidebarAbout }}
@@ -23,10 +23,14 @@
         {{ end }}
       </ul>
     </nav>
-    <hr />  
+    <hr />
+
+    {{ partial "etsy-btn.html" . }}
 
     {{ partial "social_buttons_in_sidebar.html" . }}
 
     {{ partial "ko-fi.html" . }}
+
+
   </div>
 </div>

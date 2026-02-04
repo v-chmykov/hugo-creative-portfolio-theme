@@ -1,0 +1,64 @@
+{{ with .Site.Params.etsyLink }}
+<style>
+  .btn-container {
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 24px;
+    min-width: 160px;
+  }
+
+  .btn-container .etsy-button {
+    display: inline-block;
+    vertical-align: middle;
+    background: transparent;
+    border: 1px solid #777;
+    border-radius: 7px;
+    color: #777;
+    padding: 6px 12px;
+    text-decoration: none;
+    font-family: 'Quicksand', Helvetica, "Century Gothic", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .btn-container .etsy-button:hover {
+    border-color: #ef5285;
+    color: #ef5285;
+    opacity: 0.95;
+  }
+
+  .btn-container .etsy-button .etsy-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: inherit;
+    text-shadow: 0 1px 1px rgba(34,34,34,0.05);
+  }
+
+  .btn-container .etsy-button .etsy-text img.etsy-img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: auto;
+    border: 0;
+    margin: 0;
+  }
+
+  .btn-container .etsy-button:link,
+  .btn-container .etsy-button:visited,
+  .btn-container .etsy-button:active {
+    text-decoration: none;
+  }
+</style>
+
+<div class="btn-container">
+  <a title="My Etsy Store" class="etsy-button" href="{{ $.Site.Params.etsyLink }}" target="_blank" rel="noopener">
+    <span class="etsy-text">
+      <img src="/img/etsy.png" alt="Etsy Store" class="etsy-img" data-cmp-ab="2" data-cmp-info="10">
+      {{ $.Site.Params.etsyBtnText }}
+    </span>
+  </a>
+</div>
+{{ end }}
