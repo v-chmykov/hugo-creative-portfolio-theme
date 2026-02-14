@@ -5,6 +5,7 @@
         <img class="lightbox-img" id="img_placeholder" alt="">
     </div>
     <button class="lightbox-arrow lightbox-arrow--next" aria-label="Next image">&#10095;</button>
+    <div class="lightbox-dots" id="lightbox_dots"></div>
 </div>
 
 <style>
@@ -86,15 +87,44 @@
 
     .lightbox-arrow--prev { left: 20px; }
     .lightbox-arrow--next { right: 20px; }
+
+    .lightbox-dots {
+        display: none;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1001;
+    }
+
+    .lightbox-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .lightbox-dot:hover {
+        background: rgba(255, 255, 255, 0.7);
+    }
+
+    .lightbox-dot--active {
+        background: #fff;
+    }
 </style>
 
 <script>
     var modal     = document.getElementById('modal_image');
     var modalImg  = document.getElementById('img_placeholder');
     var closeIcon = document.querySelector('.lightbox-close');
-    var prevArrow = document.querySelector('.lightbox-arrow--prev');
-    var nextArrow = document.querySelector('.lightbox-arrow--next');
-    var allImgs   = document.querySelectorAll('.content-column-content img');
+    var prevArrow  = document.querySelector('.lightbox-arrow--prev');
+    var nextArrow  = document.querySelector('.lightbox-arrow--next');
+    var dotsContainer = document.getElementById('lightbox_dots');
+    var allImgs    = document.querySelectorAll('.content-column-content img');
 
     var currentGallery = [];
     var currentIndex   = 0;
@@ -102,8 +132,35 @@
     function openLightbox(gallery, index) {
         currentGallery = gallery;
         currentIndex   = index;
+        buildDots();
         updateLightbox();
         modal.style.display = 'block';
+    }
+
+    function buildDots() {
+        dotsContainer.innerHTML = '';
+        if (currentGallery.length <= 1) {
+            dotsContainer.style.display = 'none';
+            return;
+        }
+        currentGallery.forEach(function(_, i) {
+            var dot = document.createElement('span');
+            dot.className = 'lightbox-dot' + (i === currentIndex ? ' lightbox-dot--active' : '');
+            dot.addEventListener('click', function(e) {
+                e.stopPropagation();
+                currentIndex = i;
+                updateLightbox();
+            });
+            dotsContainer.appendChild(dot);
+        });
+        dotsContainer.style.display = 'block';
+    }
+
+    function updateDots() {
+        var dots = dotsContainer.querySelectorAll('.lightbox-dot');
+        dots.forEach(function(dot, i) {
+            dot.className = 'lightbox-dot' + (i === currentIndex ? ' lightbox-dot--active' : '');
+        });
     }
 
     function updateLightbox() {
@@ -112,6 +169,7 @@
         var hasMultiple = currentGallery.length > 1;
         prevArrow.style.display = hasMultiple ? 'block' : 'none';
         nextArrow.style.display = hasMultiple ? 'block' : 'none';
+        updateDots();
     }
 
     function closeModalImage() {
