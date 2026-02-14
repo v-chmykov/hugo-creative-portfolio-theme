@@ -8,7 +8,7 @@
     {{ with $.Site.GetPage (printf "/%s/%s" "category" ($name | urlize)) }}
     <p class="category">
       Category: <a href="{{ .Permalink }}">{{ $name }}</a>
-      <span class="pull-right">
+      <span class="float-end">
         {{ $.Params.date.Format "02 January 06" }}
       </span>
     </p>

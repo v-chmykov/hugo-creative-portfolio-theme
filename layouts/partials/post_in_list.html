@@ -1,8 +1,8 @@
-<article class="col-xs-12 col-sm-6 col-md-6 col-lg-4 masonry-item">
+<article class="col-12 col-sm-6 col-md-6 col-lg-4 masonry-item">
   <div class="box-masonry">
     {{ if and (isset .Params "image") .Params.image }}
     <a href="{{ .Permalink }}" title="{{ .Title }}" class="box-masonry-image">
-      <img src="/{{ .Params.image }}" alt="{{ .Title }}" class="img-responsive">
+      <img src="/{{ .Params.image }}" alt="{{ .Title }}" class="img-fluid">
     </a>
     {{ end }}
     {{ if eq .Params.showonlyimage true }}
@@ -12,7 +12,7 @@
         {{ end }}
         <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
         <hr>
-        <div class="box-masonry-description text-justify">
+        <div class="box-masonry-description">
           <p>
             {{ if .Params.ShortDescription }}
               {{ .Params.ShortDescription }}
@@ -22,7 +22,7 @@
           </p>
         </div>
         <hr>
-        <div class="box-masonry-category text-justify">
+        <div class="box-masonry-category">
           <p class="post-list-category text-center">
               <a href="/category/{{ .Params.category | urlize }}">{{ .Params.category }}</a>
           </p>
