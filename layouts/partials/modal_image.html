@@ -1,15 +1,17 @@
-<div id="modal_image" class="modal">
-    <span class="close">&times;</span>
-    <div class="image-placeholder">
-        <img class="modal-content" id="img_placeholder">
+<div id="modal_image" class="lightbox-modal">
+    <span class="lightbox-close">&times;</span>
+    <button class="lightbox-arrow lightbox-arrow--prev" aria-label="Previous image">&#10094;</button>
+    <div class="lightbox-placeholder">
+        <img class="lightbox-img" id="img_placeholder" alt="">
     </div>
+    <button class="lightbox-arrow lightbox-arrow--next" aria-label="Next image">&#10095;</button>
 </div>
 
 <style>
-    .modal {
+    .lightbox-modal {
         display: none;
         position: fixed;
-        z-index: 1;
+        z-index: 1000;
         left: 0;
         top: 0;
         width: 100%;
@@ -18,7 +20,7 @@
         background-color: rgba(0, 0, 0, 0.9);
     }
 
-    .image-placeholder {
+    .lightbox-placeholder {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -26,26 +28,24 @@
         height: 100%;
     }
 
-    .modal-content {
-        animation-name: zoom;
+    .lightbox-img {
+        animation-name: lightbox-zoom;
         animation-duration: 0.6s;
         margin: auto;
         display: block;
-        max-height: 85%;
-        max-width: 85%;
+        max-height: 85vh;
+        max-width: 85vw;
+        width: auto;
+        height: auto;
+        object-fit: contain;
     }
 
-    @keyframes zoom {
-        from {
-            transform: scale(0)
-        }
-
-        to {
-            transform: scale(1)
-        }
+    @keyframes lightbox-zoom {
+        from { transform: scale(0) }
+        to   { transform: scale(1) }
     }
 
-    .close {
+    .lightbox-close {
         position: absolute;
         top: 15px;
         right: 35px;
@@ -53,47 +53,124 @@
         font-size: 40px;
         font-weight: bold;
         transition: 0.3s;
+        cursor: pointer;
+        z-index: 1001;
     }
 
-    .close:hover,
-    .close:focus {
+    .lightbox-close:hover,
+    .lightbox-close:focus {
         color: #bbb;
         text-decoration: none;
-        cursor: pointer;
     }
 
-    @media only screen and (max-width: 700px) {
-        .modal-content {
-            width: 100%;
-        }
+    .lightbox-arrow {
+        display: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: #f1f1f1;
+        font-size: 32px;
+        padding: 12px 18px;
+        cursor: pointer;
+        transition: background 0.2s;
+        z-index: 1001;
+        border-radius: 4px;
+        line-height: 1;
     }
+
+    .lightbox-arrow:hover {
+        background: rgba(255, 255, 255, 0.35);
+    }
+
+    .lightbox-arrow--prev { left: 20px; }
+    .lightbox-arrow--next { right: 20px; }
 </style>
 
 <script>
-    var modal = document.getElementById('modal_image');
-    var img = document.querySelectorAll('.content-column-content img');
-    var modalImg = document.getElementById('img_placeholder');
-    var closeIcon = document.querySelector('.close');
+    var modal     = document.getElementById('modal_image');
+    var modalImg  = document.getElementById('img_placeholder');
+    var closeIcon = document.querySelector('.lightbox-close');
+    var prevArrow = document.querySelector('.lightbox-arrow--prev');
+    var nextArrow = document.querySelector('.lightbox-arrow--next');
+    var allImgs   = document.querySelectorAll('.content-column-content img');
 
-    function addEventListenerList(list, event, fn) {
-        for (var i = 0, len = list.length; i < len; i++) {
-            list[i].addEventListener(event, fn, false);
-        }
+    var currentGallery = [];
+    var currentIndex   = 0;
+
+    function openLightbox(gallery, index) {
+        currentGallery = gallery;
+        currentIndex   = index;
+        updateLightbox();
+        modal.style.display = 'block';
     }
 
-    modal.addEventListener('click', closeModalImage, false);
+    function updateLightbox() {
+        modalImg.src = currentGallery[currentIndex].src;
+        modalImg.alt = currentGallery[currentIndex].alt || '';
+        var hasMultiple = currentGallery.length > 1;
+        prevArrow.style.display = hasMultiple ? 'block' : 'none';
+        nextArrow.style.display = hasMultiple ? 'block' : 'none';
+    }
 
-    addEventListenerList(img, 'click', function () {
-        modal.style.display = 'block';
-        modalImg.src = this.src;
+    function closeModalImage() {
+        modal.style.display = 'none';
+    }
 
-        modal.addEventListener('click', closeModalImage, false);
+    function navigate(direction) {
+        currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
+        updateLightbox();
+    }
+
+    // Build gallery from the clicked image's carousel, or use the image alone
+    for (var i = 0; i < allImgs.length; i++) {
+        (function(clickedImg) {
+            clickedImg.addEventListener('click', function() {
+                var carousel = clickedImg.closest('.owl-carousel');
+                var gallery, index;
+
+                if (carousel) {
+                    var carouselImgs = Array.from(
+                        carousel.querySelectorAll('.owl-item:not(.cloned) img')
+                    );
+                    index = carouselImgs.findIndex(function(img) {
+                        return img.src === clickedImg.src;
+                    });
+                    gallery = carouselImgs;
+                    if (index === -1) index = 0;
+                } else {
+                    gallery = [clickedImg];
+                    index   = 0;
+                }
+
+                openLightbox(gallery, index);
+            });
+        })(allImgs[i]);
+    }
+
+    // Close on backdrop click (anything that isn't the image or arrows)
+    modal.addEventListener('click', function(e) {
+        if (e.target !== modalImg && e.target !== prevArrow && e.target !== nextArrow) {
+            closeModalImage();
+        }
     });
 
+    prevArrow.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigate(-1);
+    });
 
-    function closeModalImage () {
-        modal.style.display = 'none';
+    nextArrow.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigate(1);
+    });
 
-        modal.removeEventListener("click", closeModalImage, false);
-    }
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (modal.style.display !== 'block') return;
+        if (e.key === 'ArrowLeft')  navigate(-1);
+        if (e.key === 'ArrowRight') navigate(1);
+        if (e.key === 'Escape')     closeModalImage();
+    });
 </script>
