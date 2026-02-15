@@ -30,11 +30,13 @@ function carousels() {
  *  masonry
  *  =======================================*/
 function masonry() {
-    var $grid = $('.grid').masonry({
-        itemSelector: ".masonry-item"
+    var gridEl = document.querySelector('.grid');
+    if (!gridEl) return;
+    var msnry = new Masonry(gridEl, {
+        itemSelector: '.masonry-item'
     });
-    $grid.imagesLoaded().progress(function () {
-        $grid.masonry('layout');
+    imagesLoaded(gridEl).on('progress', function () {
+        msnry.layout();
     });
 }
 
