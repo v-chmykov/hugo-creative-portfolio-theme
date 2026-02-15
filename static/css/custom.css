@@ -65,8 +65,39 @@
   display: inline;
 }
 
-.splide__pagination {
-  bottom: 1.2em;
+.splide__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.4em;
+  padding: 0.6em 0;
+  margin-bottom: 10px;
+}
+
+.splide__controls .splide__arrow {
+  position: static;
+  transform: none;
+  background-color: #ef5285;
+  height: 30px;
+  width: 30px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.splide__controls .splide__arrow svg {
+  fill: #fff;
+}
+
+.splide__controls .splide__arrow:hover:not(:disabled) {
+  background-color: #ef5285;
+  opacity: 1;
+}
+
+.splide__controls .splide__pagination {
+  position: static;
+  bottom: auto;
+  padding: 0 0.4em;
 }
 
 .splide__pagination__page {
@@ -79,22 +110,6 @@
   background-color: #ef5285;
   opacity: 1;
   transform: scale(1.4);
-}
-
-.splide__arrow {
-  background-color: #ef5285;
-  opacity: 0.5;
-  height: 30px;
-  width: 30px;
-}
-
-.splide__arrow svg {
-  fill: #fff;
-}
-
-.splide__arrow:hover:not(:disabled) {
-  background-color: #ef5285;
-  opacity: 1;
 }
 
 /* Iubenda Cookie Banner - I need to overwrite the font */
