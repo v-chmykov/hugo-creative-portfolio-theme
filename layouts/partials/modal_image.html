@@ -124,8 +124,6 @@
     var prevArrow  = document.querySelector('.lightbox-arrow--prev');
     var nextArrow  = document.querySelector('.lightbox-arrow--next');
     var dotsContainer = document.getElementById('lightbox_dots');
-    var allImgs    = document.querySelectorAll('.content-column-content img');
-
     var currentGallery = [];
     var currentIndex   = 0;
 
@@ -182,30 +180,30 @@
     }
 
     // Build gallery from the clicked image's carousel, or use the image alone
-    for (var i = 0; i < allImgs.length; i++) {
-        (function(clickedImg) {
-            clickedImg.addEventListener('click', function() {
-                var carousel = clickedImg.closest('.owl-carousel');
-                var gallery, index;
+    document.addEventListener('click', function(e) {
+        var clickedImg = e.target;
+        if (clickedImg.tagName !== 'IMG') return;
+        if (!clickedImg.closest('.content-column-content')) return;
 
-                if (carousel) {
-                    var carouselImgs = Array.from(
-                        carousel.querySelectorAll('.owl-item:not(.cloned) img')
-                    );
-                    index = carouselImgs.findIndex(function(img) {
-                        return img.src === clickedImg.src;
-                    });
-                    gallery = carouselImgs;
-                    if (index === -1) index = 0;
-                } else {
-                    gallery = [clickedImg];
-                    index   = 0;
-                }
+        var carousel = clickedImg.closest('.splide');
+        var gallery, index;
 
-                openLightbox(gallery, index);
+        if (carousel) {
+            var carouselImgs = Array.from(
+                carousel.querySelectorAll('.splide__slide:not(.splide__slide--clone) img')
+            );
+            index = carouselImgs.findIndex(function(img) {
+                return img.src === clickedImg.src;
             });
-        })(allImgs[i]);
-    }
+            gallery = carouselImgs;
+            if (index === -1) index = 0;
+        } else {
+            gallery = [clickedImg];
+            index   = 0;
+        }
+
+        openLightbox(gallery, index);
+    });
 
     // Close on backdrop click (anything that isn't the image or arrows)
     modal.addEventListener('click', function(e) {

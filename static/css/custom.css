@@ -65,34 +65,35 @@
   display: inline;
 }
 
-.owl-carousel li {
-  list-style: none;
+.splide__pagination {
+  bottom: 1.2em;
 }
 
-.owl-theme .owl-controls .owl-page span {
+.splide__pagination__page {
   background-color: #ef5285;
-}
-
-.owl-theme .owl-controls .owl-page span,
-.owl-theme .owl-controls .owl-buttons .owl-next,
-.owl-theme .owl-controls .owl-buttons .owl-prev {
   opacity: 0.5;
 }
 
-.owl-theme .owl-controls .owl-buttons .owl-next,
-.owl-theme .owl-controls .owl-buttons .owl-prev {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  border: 1px solid #ef5285;
-  font-weight: bold;
-  color: #fff;
+.splide__pagination__page.is-active,
+.splide__pagination__page:hover {
   background-color: #ef5285;
+  opacity: 1;
+  transform: scale(1.4);
 }
 
-.owl-theme .owl-controls.clickable .owl-page:hover span,
-.owl-theme .owl-controls .owl-buttons .owl-next:hover,
-.owl-theme .owl-controls .owl-buttons .owl-prev:hover {
+.splide__arrow {
+  background-color: #ef5285;
+  opacity: 0.5;
+  height: 30px;
+  width: 30px;
+}
+
+.splide__arrow svg {
+  fill: #fff;
+}
+
+.splide__arrow:hover:not(:disabled) {
+  background-color: #ef5285;
   opacity: 1;
 }
 
