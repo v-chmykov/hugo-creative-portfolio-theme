@@ -72,7 +72,7 @@
 </script>
 {{ end }}
 
-{{ if not .Site.IsServer }}
+{{ if not hugo.IsServer }}
   {{ if site.Config.Services.GoogleAnalytics.ID }}
     {{ with site.Config.Services.GoogleAnalytics.ID }}
       <!-- Global site tag (gtag.js) - Google Analytics -->
