@@ -1,7 +1,9 @@
 {{ define "main" }}
 <div class="grid">
     <div class="row">
-        {{ range .Pages.ByDate.Reverse }} {{ partial "post_in_list.html" . }} {{ end }}
+        {{ range $index, $element := .Pages.ByDate.Reverse }}
+          {{ partial "post_in_list.html" (dict "context" . "index" $index) }}
+        {{ end }}
     </div>
 </div>
 {{ end }}

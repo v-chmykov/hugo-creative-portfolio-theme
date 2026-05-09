@@ -1,8 +1,8 @@
 {{ define "main" }}
 <div class="grid">
   <div class="row">
-    {{ range where .Site.RegularPages.ByDate.Reverse "Section" "blog" }}
-    {{ partial "post_in_list.html" . }}
+    {{ range $index, $element := where .Site.RegularPages.ByDate.Reverse "Section" "blog" }}
+    {{ partial "post_in_list.html" (dict "context" . "index" $index) }}
     {{ end }}
   </div>
 </div>

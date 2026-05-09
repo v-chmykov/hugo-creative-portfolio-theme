@@ -1,30 +1,37 @@
+{{ $context := . }}
+{{ $index := 1 }}
+{{ if reflect.IsMap . }}
+  {{ $context = .context }}
+  {{ $index = .index }}
+{{ end }}
 <article class="col-12 col-sm-6 col-md-6 col-lg-4 masonry-item">
   <div class="box-masonry">
-    {{ if and (isset .Params "image") .Params.image }}
-    <a href="{{ .Permalink }}" title="{{ .Title }}" class="box-masonry-image">
-      <img src="/{{ .Params.image }}" alt="{{ .Title }}" class="img-fluid">
+    {{ if and (isset $context.Params "image") $context.Params.image }}
+    <a href="{{ $context.Permalink }}" title="{{ $context.Title }}" class="box-masonry-image">
+      <img src="/{{ $context.Params.image }}" alt="{{ $context.Title }}" class="img-fluid"
+        {{ if eq $index 0 }}fetchpriority="high" loading="eager"{{ else }}loading="lazy"{{ end }}>
     </a>
     {{ end }}
-    {{ if eq .Params.showonlyimage true }}
+    {{ if eq $context.Params.showonlyimage true }}
       <div class="box-masonry-hover-text-header">
     {{ else }}
       <div class="box-masonry-text">
         {{ end }}
-        <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+        <h4><a href="{{ $context.Permalink }}">{{ $context.Title }}</a></h4>
         <hr>
         <div class="box-masonry-description">
           <p>
-            {{ if .Params.ShortDescription }}
-              {{ .Params.ShortDescription }}
+            {{ if $context.Params.ShortDescription }}
+              {{ $context.Params.ShortDescription }}
             {{ else }}
-              {{ .Description }}
+              {{ $context.Description }}
             {{ end }}
           </p>
         </div>
         <hr>
         <div class="box-masonry-category">
           <p class="post-list-category text-center">
-              <a href="/category/{{ .Params.category | urlize }}">{{ .Params.category }}</a>
+              <a href="/category/{{ $context.Params.category | urlize }}">{{ $context.Params.category }}</a>
           </p>
         </div>
       </div>
